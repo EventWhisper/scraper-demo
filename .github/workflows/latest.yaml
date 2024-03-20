@@ -9,7 +9,6 @@ jobs:
 
   build-and-push:
     runs-on: ubuntu-latest
-    arch: [x64, arm64, linux/arm64/v8]
 
     steps:
     - name: Check out the repo
@@ -26,10 +25,11 @@ jobs:
         password: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Build and push
-      uses: docker/build-push-action@v2
+      uses: docker/build-push-action@v5
       with:
         push: true
         tags: ghcr.io/eventwhisper/scraper-demo:latest
+        platforms: linux/amd64,linux/arm64
 
     - name: Image digest
       run: echo ${{ steps.build-and-push.outputs.digest }}
