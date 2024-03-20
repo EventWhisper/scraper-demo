@@ -12,6 +12,13 @@ $ pip install -r requirements.txt
 $ env FLASK_APP=app/main.py APP_TOKEN=foobar DEBUG=True python -m flask run
 ```
 
+or using docker
+
+```bash
+$ docker run -e APP_TOKEN=CHANGE_ME -p 5000:5000 ghcr.io/eventwhisper/scraper-demo:latest
+```
+
+
 ## features
 
 * three different routes
