@@ -23,7 +23,7 @@ $ docker run -e APP_TOKEN=CHANGE_ME -p 5000:5000 ghcr.io/eventwhisper/scraper-de
 
 * three different routes
     * `/` - returns a simple hello world
-    * `/events` - returns a list of events
+    * `/scrape` - returns a list of events
     * `/metrics` - returns a list of prometheus metrics
 * token based authentication
 * prometheus metrics for the last scrape

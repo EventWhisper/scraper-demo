@@ -8,6 +8,7 @@ import os
 APP_TOKEN = os.environ.get('APP_TOKEN', "TOKEN_NOT_SET")
 APP_VERSION = os.environ.get('APP_VERSION', "0.0.0")
 APP_PORT = os.environ.get('APP_PORT', 5000)
+APP_BASE_PATH = os.environ.get('APP_BASE_PATH', "")
 
 app = Flask(__name__)
 metrics = PrometheusMetrics(app)
@@ -15,13 +16,13 @@ metrics.info('app_info', 'Application info', version=APP_VERSION)
 info_events_last_run = metrics.info('events_found_last_run', 'Events found in the last run')
 auth = HTTPTokenAuth(scheme='Bearer')
 
-@app.route('/')
+@app.route( f"{APP_BASE_PATH}/" )
 @auth.login_required
 def index():
     return "Hello, World!"
 
 
-@app.route('/scrape')
+@app.route( f"{APP_BASE_PATH}/scrape" )
 @auth.login_required
 def scrape():
     events = Run()
@@ -32,7 +33,7 @@ def scrape():
     
     return "[" + ",".join(json_obj_arr) + "]"
 
-@app.route('/metrics')
+@app.route( f"{APP_BASE_PATH}/metrics" )
 @auth.login_required
 def metrics():
     return metrics
