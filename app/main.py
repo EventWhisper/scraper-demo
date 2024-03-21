@@ -7,6 +7,7 @@ import os
 
 APP_TOKEN = os.environ.get('APP_TOKEN', "TOKEN_NOT_SET")
 APP_VERSION = os.environ.get('APP_VERSION', "0.0.0")
+APP_PORT = os.environ.get('APP_PORT', 5000)
 
 app = Flask(__name__)
 metrics = PrometheusMetrics(app)
@@ -45,4 +46,4 @@ def verify_token(token):
     return False
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=APP_PORT)
