@@ -40,7 +40,6 @@ def scrape():
     return "[" + ",".join(json_obj_arr) + "]"
 
 @app.route( f"{APP_BASE_PATH}/metrics" )
-@auth.login_required
 def metrics():
     return metrics
 
