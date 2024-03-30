@@ -39,10 +39,6 @@ def scrape():
     
     return "[" + ",".join(json_obj_arr) + "]"
 
-@app.route( f"{APP_BASE_PATH}/metrics" )
-def metrics():
-    return metrics
-
 @auth.verify_token
 def verify_token(token):
     print(token)
